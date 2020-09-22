@@ -1,15 +1,42 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <HelloWorld v-bind:msg="message" />
+  <div>
+    {{ randomInfo }} coins spent
+  </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import snoowrap from 'snoowrap';
+
+const r = new snoowrap({
+  userAgent: 'test',
+  clientId: 'A8vxCsrmlmtJvA',
+  clientSecret: 'kbj0llHkMaZQpliUge557AWLcbU',
+  refreshToken: '58259128-BP93LKGhl0a2zR-zF5Qj1mXiaZk'
+});
 
 export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  data () {
+    return {
+      message: "heyoooo",
+      randomInfo: null
+    }
+  },
+  mounted () {
+    r.getSubmission("ix8x2m").fetch()
+      .then(submission => {
+        var moneySpent = 0;
+        const awards = submission.all_awardings
+        for (const award of awards) {
+          moneySpent += award.coin_price;
+        }
+        this.randomInfo = moneySpent;
+      });
   }
 }
 </script>
