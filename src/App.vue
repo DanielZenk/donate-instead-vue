@@ -1,7 +1,13 @@
 <template>
   <HelloWorld v-bind:msg="message" />
-  <div id="coin-info">
+  <div v-if="randomInfo" id="coin-info">
     {{ randomInfo }} coins spent
+  </div>
+  <div v-if="randomInfo">
+    If you bought coins at reddit's best rate (82,000 coins for 200 CAD), this amount of coins is equivalent to {{ randomInfo / 410 }} CAD!
+  </div>
+  <div v-if="randomInfo">
+    If you bought coins at reddit's worst rate (500 coins for 2 CAD), this amount of coins is equivalent to {{ randomInfo / 250 }} CAD!
   </div>
 </template>
 
@@ -23,7 +29,7 @@ export default {
   },
   data () {
     return {
-      message: "heyoooo",
+      message: "Donate instead!",
       randomInfo: null
     }
   },
