@@ -12,6 +12,7 @@
     "es6-promise": "^4.2.8",
     "snoowrap": "^1.21.0",
     "vue": "^3.0.0-0",
+    "vue-material": "^1.0.0-beta-15",
     "vuex": "^4.0.0-beta.4"
   },
   "devDependencies": {

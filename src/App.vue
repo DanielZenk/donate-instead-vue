@@ -1,6 +1,6 @@
 <template>
   <HelloWorld v-bind:msg="message" />
-  <div>
+  <div id="coin-info">
     {{ randomInfo }} coins spent
   </div>
 </template>
@@ -31,7 +31,8 @@ export default {
     r.getSubmission("ix8x2m").fetch()
       .then(submission => {
         var moneySpent = 0;
-        const awards = submission.all_awardings
+        console.log(submission);
+        const awards = submission.all_awardings;
         for (const award of awards) {
           moneySpent += award.coin_price;
         }
